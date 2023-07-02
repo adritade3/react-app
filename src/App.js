@@ -1,29 +1,42 @@
 import "./App.css";
 import Video from "./components/Video";
+import videos from "./data/data";
+import PlayButton from "./components/PlayButton";
 
 function App() {
-  let obj = {
-    title: "React Js Tutorial",
-    views: "10K",
-    time: "1 year ago",
-    channel: "New Learning",
-  };
   return (
     <div className="App">
       <div>Videos</div>
-      <Video {...obj}></Video>
-      <Video
-        title="Node Js Tutorial"
-        views="99K"
-        time="1 month ago"
-        channel="New Learning"
-      ></Video>
-      <Video
-        title="Angular Js Tutorial"
-        views="100K"
-        time="5 days ago"
-        channel="New Learning"
-      ></Video>
+      {/* <Video {...obj}></Video> */}
+      {videos.map((video) => (
+        <Video
+          key={video.id}
+          title={video.title}
+          views={video.views}
+          time={video.time}
+          channel={video.channel}
+          verified={video.verified}
+          id={video.id}
+        ></Video>
+      ))}
+      <div style={{ clear: "both" }}>
+        <PlayButton
+          message="Video Playing"
+          onSmash={(msg) => {
+            console.log(msg);
+          }}
+        >
+          Play
+        </PlayButton>
+        <PlayButton
+          message="Video stopped"
+          onSmash={(msg) => {
+            alert(msg);
+          }}
+        >
+          Pause
+        </PlayButton>
+      </div>
     </div>
   );
 }
