@@ -11,7 +11,7 @@ const initialState = {
   views: "",
 };
 
-function AddVideo({ addVideo, editVideoForm, updateVideo }) {
+function AddVideo({ dispatch, editVideoForm }) {
   const [video, setVideo] = useState(initialState);
   const changeHandler = (e) => {
     e.stopPropagation();
@@ -20,9 +20,9 @@ function AddVideo({ addVideo, editVideoForm, updateVideo }) {
   const submitHandler = (e) => {
     e.preventDefault();
     if (editVideoForm) {
-      updateVideo(video);
+      dispatch({ type: "UPDATE", payload: video });
     } else {
-      addVideo(video);
+      dispatch({ type: "ADD", payload: video });
     }
     setVideo(initialState);
   };

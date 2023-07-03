@@ -1,7 +1,7 @@
 import Video from "./Video";
 import PlayButton from "./PlayButton";
 
-function VideosList({ videos, editVideo, deleteVideo }) {
+function VideosList({ videos, editVideo, dispatch }) {
   return (
     <>
       {videos.map((video) => (
@@ -14,7 +14,7 @@ function VideosList({ videos, editVideo, deleteVideo }) {
           verified={video.verified}
           id={video.id}
           editVideo={editVideo}
-          deleteVideo={deleteVideo}
+          dispatch={dispatch}
         >
           <PlayButton>{video.title}</PlayButton>
         </Video>
