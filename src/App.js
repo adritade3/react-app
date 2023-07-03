@@ -31,14 +31,14 @@ function App() {
         >
           Play
         </PlayButton>
-        <PlayButton
+        {/* <PlayButton
           message="Video stopped"
           onSmash={(msg) => {
             alert(msg);
           }}
         >
           Pause
-        </PlayButton>
+        </PlayButton> */}
       </div>
     </div>
   );
