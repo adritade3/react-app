@@ -6,6 +6,7 @@ import VideosList from "./components/VideosList";
 
 function App() {
   const [videos, setVideos] = useState(videosData);
+  const [editVideoForm, setEditVideoForm] = useState(null);
   const addVideo = (video) => {
     setVideos([...videos, { ...video, id: videos.length + 1 }]);
   };
@@ -13,11 +14,25 @@ function App() {
     const modifiedVideos = videos.filter((v) => v.id !== id);
     setVideos(modifiedVideos);
   };
-  const editVideo = (id) => {};
+  const editVideo = (id) => {
+    const editableVideo = videos.find((v) => v.id === id);
+    setEditVideoForm(editableVideo);
+  };
+
+  const updateVideo = (video) => {
+    const index = videos.findIndex((v) => v.id === video.id);
+    const updatedList = [...videos];
+    updatedList.splice(index, 1, video);
+    setVideos(updatedList);
+  };
 
   return (
     <div className="App">
-      <AddVideo addVideo={addVideo}></AddVideo>
+      <AddVideo
+        editVideoForm={editVideoForm}
+        addVideo={addVideo}
+        updateVideo={updateVideo}
+      ></AddVideo>
       <VideosList
         deleteVideo={deleteVideo}
         editVideo={editVideo}

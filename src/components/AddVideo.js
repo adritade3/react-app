@@ -1,6 +1,8 @@
 import "./AddVideo.css";
 import { useState } from "react";
 
+import { useEffect } from "react";
+
 const initialState = {
   time: "5 month ago",
   channel: "Coder Dost",
@@ -9,7 +11,7 @@ const initialState = {
   views: "",
 };
 
-function AddVideo({ addVideo }) {
+function AddVideo({ addVideo, editVideoForm, updateVideo }) {
   const [video, setVideo] = useState(initialState);
   const changeHandler = (e) => {
     e.stopPropagation();
@@ -17,9 +19,17 @@ function AddVideo({ addVideo }) {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    addVideo(video);
+    if (editVideoForm) {
+      updateVideo(video);
+    } else {
+      addVideo(video);
+    }
     setVideo(initialState);
   };
+
+  useEffect(() => {
+    if (editVideoForm) setVideo({ ...editVideoForm });
+  }, [editVideoForm]);
   return (
     <form>
       <input
@@ -36,7 +46,9 @@ function AddVideo({ addVideo }) {
         placeholder="views"
         value={video.views}
       />
-      <button onClick={submitHandler}>Add Video</button>
+      <button onClick={submitHandler}>
+        {editVideoForm ? "Edit" : "Add"} Video
+      </button>
     </form>
   );
 }
