@@ -22,8 +22,11 @@ function App() {
       <div style={{ clear: "both" }}>
         <PlayButton
           message="Video Playing"
-          onSmash={(msg) => {
-            console.log(msg);
+          onPlay={() => {
+            console.log("Video playing");
+          }}
+          onPause={() => {
+            console.log("Video Stopped");
           }}
         >
           Play

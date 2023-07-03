@@ -1,7 +1,10 @@
 import "./PlayButton.css";
-function PlayButton({ children, message, onSmash }) {
+function PlayButton({ children, message, onPlay, onPause }) {
+  let playing = false;
   const handleClick = () => {
-    onSmash(message);
+    if (playing) onPlay();
+    else onPause();
+    playing = !playing;
   };
   return <button onClick={handleClick}>{children}</button>;
 }
