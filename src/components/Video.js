@@ -1,6 +1,6 @@
 import "./Video.css";
 
-function Video({ id, title, channel, views, time, verified }) {
+function Video({ id, title, channel, views, time, verified, children }) {
   let bg = "dark";
   return (
     <>
@@ -23,6 +23,7 @@ function Video({ id, title, channel, views, time, verified }) {
         <div className="views">
           {views} views <span>.</span> {time}
         </div>
+        <div>{children}</div>
       </div>
     </>
   );

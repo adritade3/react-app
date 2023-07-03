@@ -1,13 +1,20 @@
+import { useState } from "react";
 import "./PlayButton.css";
-function PlayButton({ children, message, onPlay, onPause }) {
-  let playing = true;
+function PlayButton({ children }) {
+  let [playing, setPlaying] = useState(false);
+
+  console.log(
+    playing ? children + "video playing" : children + "video stopped"
+  );
   const handleClick = (e) => {
     e.stopPropagation();
-    if (playing) onPlay();
-    else onPause();
-    playing = !playing;
+    setPlaying(!playing);
   };
-  return <button onClick={handleClick}>{children}</button>;
+  return (
+    <button onClick={handleClick}>
+      {children}:{playing ? "⏸️" : "▶️"}
+    </button>
+  );
 }
 
 export default PlayButton;

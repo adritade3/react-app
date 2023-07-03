@@ -1,12 +1,29 @@
 import "./App.css";
 import Video from "./components/Video";
-import videos from "./data/data";
+import videosData from "./data/data";
 import PlayButton from "./components/PlayButton";
+import { useState } from "react";
 
 function App() {
+  const [videos, setVideos] = useState(videosData);
+  const clickHandler = () => {
+    setVideos([
+      ...videos,
+      {
+        id: videos.length + 1,
+        title: "React Js Tutorial",
+        views: "400K",
+        time: "5 month ago",
+        channel: "Coder Dost",
+        verified: true,
+      },
+    ]);
+  };
   return (
     <div className="App">
-      <div>Videos</div>
+      <div>
+        <button onClick={clickHandler}>Add Video</button>
+      </div>
       {/* <Video {...obj}></Video> */}
       {videos.map((video) => (
         <Video
@@ -17,9 +34,11 @@ function App() {
           channel={video.channel}
           verified={video.verified}
           id={video.id}
-        ></Video>
+        >
+          <PlayButton>{video.title}</PlayButton>
+        </Video>
       ))}
-      <div style={{ clear: "both" }}>
+      {/* <div style={{ clear: "both" }}>
         <PlayButton
           message="Video Playing"
           onPlay={() => {
@@ -30,8 +49,8 @@ function App() {
           }}
         >
           Play
-        </PlayButton>
-        {/* <PlayButton
+        </PlayButton> */}
+      {/* <PlayButton
           message="Video stopped"
           onSmash={(msg) => {
             alert(msg);
@@ -39,7 +58,6 @@ function App() {
         >
           Pause
         </PlayButton> */}
-      </div>
     </div>
   );
 }
