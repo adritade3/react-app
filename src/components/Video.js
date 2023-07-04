@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import "./Video.css";
-import VideoDispatchContext from "../context/VideoDispatchContext";
+import useVideoDispatch from "../hook/VideoDispatch";
 
 function Video({
   id,
@@ -13,7 +13,7 @@ function Video({
 
   editVideo,
 }) {
-  const dispatch = useContext(VideoDispatchContext);
+  const dispatch = useVideoDispatch();
   let bg = "dark";
   return (
     <>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import AddVideo from "./components/AddVideo";
 import VideosList from "./components/VideosList";
 import { useReducer } from "react";
-import VideoContext from "./context/VideoContext";
+import VideosContext from "./context/VideosContext";
 import VideoDispatchContext from "./context/VideoDispatchContext";
 
 function App() {
@@ -34,14 +34,14 @@ function App() {
   };
 
   return (
-    <VideoContext.Provider value={videos}>
+    <VideosContext.Provider value={videos}>
       <VideoDispatchContext.Provider value={dispatch}>
         <div className="App">
           <AddVideo editVideoForm={editVideoForm}></AddVideo>
           <VideosList editVideo={editVideo}></VideosList>
         </div>
       </VideoDispatchContext.Provider>
-    </VideoContext.Provider>
+    </VideosContext.Provider>
   );
 }
 
