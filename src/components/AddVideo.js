@@ -1,7 +1,8 @@
 import "./AddVideo.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { useEffect } from "react";
+import VideoDispatchContext from "../context/VideoDispatchContext";
 
 const initialState = {
   time: "5 month ago",
@@ -11,7 +12,8 @@ const initialState = {
   views: "",
 };
 
-function AddVideo({ dispatch, editVideoForm }) {
+function AddVideo({ editVideoForm }) {
+  const dispatch = useContext(VideoDispatchContext);
   const [video, setVideo] = useState(initialState);
   const changeHandler = (e) => {
     e.stopPropagation();
