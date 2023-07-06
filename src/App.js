@@ -6,6 +6,7 @@ import VideosList from "./components/VideosList";
 import { useReducer } from "react";
 import VideosContext from "./context/VideosContext";
 import VideoDispatchContext from "./context/VideoDispatchContext";
+import Counter from "./components/Counter";
 
 function App() {
   const [editVideoForm, setEditVideoForm] = useState(null);

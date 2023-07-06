@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import "./Video.css";
 import useVideoDispatch from "../hook/VideoDispatch";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 function Video({
   id,
@@ -15,6 +16,16 @@ function Video({
 }) {
   const dispatch = useVideoDispatch();
   let bg = "dark";
+
+  useEffect(() => {
+    const idx = setInterval(() => {
+      console.log("Video is rendered ", id);
+    }, 1000);
+    return () => {
+      clearInterval(idx);
+    };
+  }, [id]);
+
   return (
     <>
       <div className="container">
